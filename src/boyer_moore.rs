@@ -1,5 +1,6 @@
 use std::collections::hash_map::Entry;
 use std::collections::{HashMap, HashSet};
+use crate::good_suffix::preprocessX;
 
 pub fn boyer_moore(str: &str, pat: &str) -> Option<usize> {
     let mut prev_char = HashMap::new();
@@ -41,6 +42,8 @@ impl BoyerMoore {
         let mut pos = 0;
         let patlen = self.pat.len();
         let strlen = self.chars.len();
+
+        let l_prime = preprocessX(&self.pat);
 
         loop {
             let patpos = patlen - 1;
